@@ -12,7 +12,7 @@ public class CustomerTest
     @BeforeEach
     public void setUp()
     {
-        name = "Dennis";
+        name = "Lars";
         customer = new Customer(name);
     }
 
