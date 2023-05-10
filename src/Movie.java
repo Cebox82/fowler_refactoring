@@ -5,16 +5,16 @@ public class Movie {
     private String title;
     private int priceCode;
     public Movie(String newtitle, int newpriceCode) {
-        title = newtitle;
-        priceCode = newpriceCode;
+        this.title = newtitle;
+        this.priceCode = newpriceCode;
     }
     public int getPriceCode() {
-        return priceCode;
+        return this.priceCode;
     }
     public void setPriceCode(int arg) {
         priceCode = arg;
     }
     public String getTitle (){
-        return title;
+        return this.title;
     };
 }
