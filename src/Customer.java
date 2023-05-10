@@ -4,7 +4,7 @@ import java.util.*;
 
 class Customer {
     private String name;
-    private Vector<Rental> rentals = new Vector<Rental>();
+    private final Vector<Rental> rentals = new Vector<Rental>();
     public Customer (String newname){
         name = newname;
     };
@@ -21,7 +21,6 @@ class Customer {
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
         while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = rentals.nextElement();
             //determine amounts for each line
             // add frequent renter points
@@ -32,13 +31,23 @@ class Customer {
         }
         //add footer lines
         result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
+        return result;
+    }
+
+    private int getTotalFrequentRenterPoints() {
+        int result = 0;
+        Enumeration<Rental> rentals = this.rentals.elements();
+        while (rentals.hasMoreElements()) {
+            Rental each = rentals.nextElement();
+            result += each.getFrequentRenterPoints();
+        }
         return result;
     }
 
     private double getTotalCharge() {
         double result = 0;
-        Enumeration<Rental> rentals = _rentals.elements();
+        Enumeration<Rental> rentals = this.rentals.elements();
         while (rentals.hasMoreElements()) {
             Rental each = rentals.nextElement();
             result += each.getCharge();
